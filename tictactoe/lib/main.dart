@@ -24,7 +24,37 @@ class _MyHomePageState extends State<MyHomePage> {
   String status = "_";
   String player = "Joueur X";
   int turn = 0;
+  static int n = 3;
+  var game = new List.generate(n, (_) => new List(n));
 
+  @override
+  void initState(){
+    for(int i = 0; i < game.length; i++){
+      for(int j = 0; j < game.length; j++){
+        game[i][j] = "_";
+      }
+    }
+    super.initState();
+  }
+  Function _disableButton(int i, int j){
+    if (game[i][j] != "_") {
+      return null;
+    } else {
+      return () {
+        setState(() {
+          if (turn == 0) {
+            player = "Tour du joueur X";
+            game[i][j] = "X";
+            turn = 1;
+          } else {
+            player = "Tour du joueur O";
+            game[i][j] = "O";
+            turn = 0;
+          }
+        });
+      };
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,29 +82,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     new RaisedButton(
-                        child: Text(status),
-                        onPressed: () {
-                          setState(() {
-                            if (turn == 0) {
-                              player = "Tour du joueur X";
-                              turn = 1;
-                            } else {
-                              player = "Tour du joueur O";
-                              turn = 0;
-                            }
-                          });
-                        },
+                        child: Text(game[0][0]),
+                        onPressed: _disableButton(0,0),
                         shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
                     ),
 
                     new RaisedButton(
-                        child: Text(status),
-                        onPressed: null,
+                        child: Text(game[1][0]),
+                        onPressed: _disableButton(1,0),
                         shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
                     ),
                     new RaisedButton(
-                        child: Text(status),
-                        onPressed: null,
+                        child: Text(game[2][0]),
+                        onPressed: _disableButton(2,0),
                         shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
                     )
 
@@ -87,19 +107,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     new RaisedButton(
-                        child: Text(status),
-                        onPressed: null,
+                        child: Text(game[0][1]),
+                        onPressed: _disableButton(0,1),
                         shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
                     ),
 
                     new RaisedButton(
-                        child: Text(status),
-                        onPressed: null,
+                        child: Text(game[1][1]),
+                        onPressed: _disableButton(1,1),
                         shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
                     ),
                     new RaisedButton(
-                        child: Text(status),
-                        onPressed: null,
+                        child: Text(game[2][1]),
+                        onPressed: _disableButton(2,1),
                         shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
                     )
                   ]
@@ -111,19 +131,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     new RaisedButton(
-                        child: Text(status),
-                        onPressed: null,
+                        child: Text(game[0][2]),
+                        onPressed: _disableButton(0,2),
                         shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
                     ),
 
                     new RaisedButton(
-                        child: Text(status),
-                        onPressed: null,
+                        child: Text(game[1][2]),
+                        onPressed: _disableButton(1,2),
                         shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
                     ),
                     new RaisedButton(
-                        child: Text(status),
-                        onPressed: null,
+                        child: Text(game[2][2]),
+                        onPressed: _disableButton(2,2),
                         shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0))
                     )
                   ]
