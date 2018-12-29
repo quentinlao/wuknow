@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import './quiz_page.dart';
 class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -8,24 +8,23 @@ class LandingPage extends StatelessWidget {
         children: <Widget>[
           new Container(
             decoration: new BoxDecoration(
-              color: const Color(0xff7c94b6),
               image: new DecorationImage(
-                colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.dstATop),
                 image: new AssetImage("assets/images/home.jpg"),
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          new Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                new Center(
-                    child:new Text("Quiz Waifu",style: new TextStyle(color: Colors.white, fontSize: 50.0, fontWeight: FontWeight.bold),),
-                ),
-                new Text("Choose your waifu", style: new TextStyle(color: Colors.white, fontSize: 30.0, fontWeight: FontWeight.bold),),
-              ]
+          new InkWell(
+            onTap: () => Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new QuizPage())),
+            child: new Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  new Center(
+                    child:new Text("Quiz waifu",style: new TextStyle(color: Colors.white, fontSize: 50.0, fontWeight: FontWeight.bold),),
+                  ),
+                  new Text("Start", style: new TextStyle(color: Colors.greenAccent, fontSize: 40.0, fontWeight: FontWeight.bold,fontStyle: FontStyle.italic),),
+                ]
+            ),
           ),
         ]
       )
