@@ -4,7 +4,7 @@ quizwaifu
 
 ## Learning
 
-Features learn :
+Features learnt :
 - Images
 - New intent
 - AnimationController
